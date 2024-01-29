@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 29, 2024 at 09:15 AM
+-- Generation Time: Jan 29, 2024 at 09:22 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -61,6 +61,8 @@ CREATE TABLE `karyawan` (
   `id` bigint(20) NOT NULL,
   `nama` varchar(225) NOT NULL,
   `id_posisi` int(20) NOT NULL,
+  `gambar` varchar(255) NOT NULL,
+  `jenis_kelamin` varchar(255) NOT NULL,
   `tanggal_lahir` date DEFAULT NULL,
   `alamat` varchar(225) DEFAULT NULL,
   `username` varchar(225) DEFAULT NULL,
@@ -76,13 +78,13 @@ CREATE TABLE `karyawan` (
 -- Dumping data for table `karyawan`
 --
 
-INSERT INTO `karyawan` (`id`, `nama`, `id_posisi`, `tanggal_lahir`, `alamat`, `username`, `email`, `password`, `no_hp`, `tanggal_masuk`, `create_at`, `update_at`) VALUES
-(1, 'admin', 1, NULL, 'admin', 'admin', 'admin@gmail.com', '12345678', '08123456789', '2024-01-02', '2024-01-29 06:31:07', '2024-01-29 06:31:07'),
-(2, 'Brian', 2, '2024-01-03', 'salatiga', 'brian1', 'brian1@gmail.com', '1234', '08123456789', '2024-01-10', '2024-01-29 06:33:48', '2024-01-29 06:33:48'),
-(4, 'Briyan', 2, '2024-01-03', 'salatiga', 'Briyan1', 'Briyan1@gmail.com', '1234', '08123456789', '2024-01-02', '2024-01-29 06:45:32', '2024-01-29 06:45:32'),
-(5, 'Briyan2', 2, '2024-01-03', 'salatiga', 'Briyan2', 'Briyan2@gmail.com', '1234', '08123456789', '2024-01-02', '2024-01-29 06:46:17', '2024-01-29 06:46:17'),
-(6, 'Briyan3', 2, '2024-01-03', 'salatiga', 'Briyan3', 'Briyan3@gmail.com', '1234', '08123456789', '2024-01-02', '2024-01-29 06:46:17', '2024-01-29 06:46:17'),
-(7, 'Briyan4', 2, '2024-01-03', 'salatiga', 'Briyan4', 'Briyan4@gmail.com', '1234', '08123456789', '2024-01-02', '2024-01-29 06:46:17', '2024-01-29 06:46:17');
+INSERT INTO `karyawan` (`id`, `nama`, `id_posisi`, `gambar`, `jenis_kelamin`, `tanggal_lahir`, `alamat`, `username`, `email`, `password`, `no_hp`, `tanggal_masuk`, `create_at`, `update_at`) VALUES
+(1, 'admin', 1, '', '', NULL, 'admin', 'admin', 'admin@gmail.com', '12345678', '08123456789', '2024-01-02', '2024-01-29 06:31:07', '2024-01-29 06:31:07'),
+(2, 'Brian', 2, '', '', '2024-01-03', 'salatiga', 'brian1', 'brian1@gmail.com', '1234', '08123456789', '2024-01-10', '2024-01-29 06:33:48', '2024-01-29 06:33:48'),
+(4, 'Briyan', 2, '', '', '2024-01-03', 'salatiga', 'Briyan1', 'Briyan1@gmail.com', '1234', '08123456789', '2024-01-02', '2024-01-29 06:45:32', '2024-01-29 06:45:32'),
+(5, 'Briyan2', 2, '', '', '2024-01-03', 'salatiga', 'Briyan2', 'Briyan2@gmail.com', '1234', '08123456789', '2024-01-02', '2024-01-29 06:46:17', '2024-01-29 06:46:17'),
+(6, 'Briyan3', 2, '', '', '2024-01-03', 'salatiga', 'Briyan3', 'Briyan3@gmail.com', '1234', '08123456789', '2024-01-02', '2024-01-29 06:46:17', '2024-01-29 06:46:17'),
+(7, 'Briyan4', 2, '', '', '2024-01-03', 'salatiga', 'Briyan4', 'Briyan4@gmail.com', '1234', '08123456789', '2024-01-02', '2024-01-29 06:46:17', '2024-01-29 06:46:17');
 
 -- --------------------------------------------------------
 
