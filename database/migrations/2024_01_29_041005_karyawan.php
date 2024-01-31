@@ -13,7 +13,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('karyawan', function (Blueprint $table) {
-            $table->id('id_karyawan');
+            $table->id();
             $table->string('nama', 225);
             $table->date('tanggal_lahir')->nullable();
             $table->string('alamat', 225)->nullable();
@@ -22,16 +22,16 @@ return new class extends Migration
             $table->string('password');
             $table->string('no_hp', 15)->nullable();
             $table->date('tanggal_masuk')->nullable();
-            $table->timestamps();
             $table->timestamp('create_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('update_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
     }
+
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('karyawan');
     }
 };
