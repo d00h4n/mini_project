@@ -204,6 +204,124 @@ CREATE TABLE `users` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `migrations`
+--
+
+CREATE TABLE `migrations` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `migration` varchar(255) NOT NULL,
+  `batch` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `migrations`
+--
+
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
+(1, '2014_10_12_000000_create_users_table', 1),
+(2, '2014_10_12_100000_create_password_reset_tokens_table', 1),
+(3, '2019_08_19_000000_create_failed_jobs_table', 1),
+(4, '2019_12_14_000001_create_personal_access_tokens_table', 1),
+(5, '2024_01_29_035902_posisi', 1),
+(6, '2024_01_29_040116_presensi', 1),
+(7, '2024_01_29_040137_absensi', 1),
+(8, '2024_01_29_041005_karyawan', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `password_reset_tokens`
+--
+
+CREATE TABLE `password_reset_tokens` (
+  `email` varchar(255) NOT NULL,
+  `token` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `personal_access_tokens`
+--
+
+CREATE TABLE `personal_access_tokens` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `tokenable_type` varchar(255) NOT NULL,
+  `tokenable_id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `token` varchar(64) NOT NULL,
+  `abilities` text DEFAULT NULL,
+  `last_used_at` timestamp NULL DEFAULT NULL,
+  `expires_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `posisi`
+--
+
+CREATE TABLE `posisi` (
+  `id` int(20) NOT NULL,
+  `n_posisi` varchar(225) NOT NULL,
+  `deskrip` text DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `posisi`
+--
+
+INSERT INTO `posisi` (`id`, `n_posisi`, `deskrip`, `created_at`, `updated_at`) VALUES
+(1, 'admin', NULL, '2024-01-29 06:22:47', '2024-01-29 06:22:47'),
+(2, 'Game Designer', NULL, '2024-01-29 06:25:07', '2024-01-29 06:25:07'),
+(3, 'Game Developer / Programmer:', NULL, '2024-01-29 06:25:47', '2024-01-29 06:25:47'),
+(4, '3D Artist / Animator', NULL, '2024-01-29 06:27:52', '2024-01-29 06:27:52'),
+(5, '2D Artist / Illustrator', NULL, '2024-01-29 06:27:52', '2024-01-29 06:27:52'),
+(6, 'Game Tester', NULL, '2024-01-29 06:27:52', '2024-01-29 06:27:52'),
+(7, 'Sound Designer / Composer', NULL, '2024-01-29 06:27:52', '2024-01-29 06:27:52'),
+(8, 'Game Producer / Project Manager', NULL, '2024-01-29 06:27:52', '2024-01-29 06:27:52'),
+(9, 'UI/UX Designer', NULL, '2024-01-29 06:27:52', '2024-01-29 06:27:52'),
+(10, 'Game Writer', NULL, '2024-01-29 06:27:52', '2024-01-29 06:27:52'),
+(11, 'Community Manager', NULL, '2024-01-29 06:27:52', '2024-01-29 06:27:52');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `presensi`
+--
+
+CREATE TABLE `presensi` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `tanggal` date NOT NULL,
+  `jam_masuk` time DEFAULT NULL,
+  `jam_pulang` time DEFAULT NULL,
+  `id_absensi` tinyint(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `remember_token` varchar(100) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 --
 -- Indexes for dumped tables
 --
