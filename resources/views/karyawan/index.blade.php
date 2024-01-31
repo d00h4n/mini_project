@@ -53,14 +53,16 @@
                                         alt="Gambar" width="50" height="50">
                                 </td>
                                 <td>{{ $karyawan->posisi->n_posisi }}</td>
-                                <td>{{ $karyawan->roles }}</td>
-                                <td>{{ $karyawan->jenis_kelamin }}</td>
-                                <td>{{ $karyawan->tanggal_lahir }}</td>
-                                <td>{{ $karyawan->alamat }}</td>
+                                <td>{{ $karyawan->roles ? $karyawan->roles : 'none' }}</td>
+                                <td>{{ $karyawan->jenis_kelamin ? $karyawan->jenis_kelamin : 'none' }}</td>
+                                <td>{{ $karyawan->tanggal_lahir ? $karyawan->tanggal_lahir : 'none' }}</td>
+                                <td>{{ $karyawan->alamat ? $karyawan->alamat : 'none' }}</td>
                                 <td>
                                     <div class="text-right">
+
                                         <button type="button" class="btn btn-info" data-bs-toggle="modal"
-                                            data-bs-target="#staticBackdrop">
+                                            data-bs-target="#detailModal{{ $karyawan->id }}"
+                                            onclick="showDetail({{ $karyawan->id }})">
                                             <i class="material-icons">info</i>
                                         </button>
                                         <a href="{{ route('karyawanEdit', ['karyawan' => $karyawan->id]) }}"
@@ -73,6 +75,98 @@
                                     </div>
                                 </td>
                             </tr>
+
+                            <div class="modal fade" id="detailModal{{ $karyawan->id }}" tabindex="-1"
+                                aria-labelledby="detailModalLabel{{ $karyawan->id }}" aria-hidden="true"
+                                data-bs-backdrop="static" data-bs-keyboard="false">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="detailKaryawanLabel">
+                                                <i class="material-icons">info</i><span> Detail Karyawan</span>
+                                            </h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+
+                                        <div class="modal-body">
+
+                                            <ul class="list-group list-group-flush">
+                                                <li class="list-group-item">
+                                                    <div class="row">
+                                                        <div class="col-4">
+                                                            <img src="{{ $karyawan->gambar ? asset('/storage/karyawan/' . $karyawan->gambar) : asset('/storage/images/default-photo.png') }}"
+                                                                class="rounded-circle img-thumbnail" alt="Cinque Terre"
+                                                                width="100" height="100">
+                                                        </div>
+                                                        <div class="col-8">
+                                                            <div class="row">
+                                                                <h4>{{ $karyawan->nama }}</h4>
+                                                            </div>
+                                                            <div class="row">
+                                                                <span>{{ $karyawan->posisi->n_posisi }}
+                                                                    <b>({{ $karyawan->roles }})</b></span>
+                                                                <span>{{ $karyawan->jenis_kelamin }}</span>
+                                                                <span><i>{{ $karyawan->alamat }}</i></span>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+
+                                                </li>
+                                                <li class="list-group-item">
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <span>Username</span>
+                                                        </div>
+                                                        <div class="col">
+                                                            <span>: {{ $karyawan->username }}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <span>Email</span>
+                                                        </div>
+                                                        <div class="col">
+                                                            <span style="color: blue">: {{ $karyawan->email }}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <span>No Hp</span>
+                                                        </div>
+                                                        <div class="col">
+                                                            <span>: {{ $karyawan->no_hp }}</span>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li class="list-group-item">
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <span>Tanggal Lahir</span>
+                                                        </div>
+                                                        <div class="col">
+                                                            <span>: {{ $karyawan->tanggal_lahir }}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <span>Tanggal Masuk</span>
+                                                        </div>
+                                                        <div class="col">
+                                                            <span>: {{ $karyawan->tanggal_masuk }}</span>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Tutup</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         @endforeach
                     </tbody>
 
@@ -81,27 +175,6 @@
         </div>
     </div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="staticBackdropLabel">
-                        Modal title
-                    </h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">...</div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                        Close
-                    </button>
-                    <button type="button" class="btn btn-primary">Understood</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
 </body>
 

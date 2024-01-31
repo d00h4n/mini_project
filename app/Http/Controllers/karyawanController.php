@@ -83,9 +83,15 @@ class karyawanController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Karyawan $karyawan)
+
+    public function show(string $karyawan)
     {
-        //
+        $posisi = Posisi::all();
+        $karyawan = Karyawan::findOrFail($karyawan);
+        return view('karyawan.edit', [
+            'karyawan' => $karyawan,
+            'posisi' => $posisi
+        ]);
     }
 
     /**

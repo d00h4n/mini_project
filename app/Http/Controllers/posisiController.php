@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Posisi;
+use GuzzleHttp\Promise\Create;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
 
@@ -34,12 +35,17 @@ class posisiController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = validator($request->all(), [
-            'n_posisi' => 'required|string|max:255'
-        ])->validate();
+        $this->validate($request, [
+            'n_posisi' => 'required|string|max:255',
+        ]);
 
-        $posisi = new Posisi($validatedData);
-        $posisi->save();
+        // $posisi = new Posisi($validatedData);
+        // $posisi->save();
+
+        Posisi::create([
+            'n_posisi' => $request->n_posisi,
+            'deskrip' => $request->deskrip,
+        ]);
 
         return redirect(route('posisiIndex'));
     }
@@ -86,6 +92,7 @@ class posisiController extends Controller
     {
         $posisi = Posisi::findOrFail($posisi);
         $posisi->delete();
-        return redirect(route('posisiIndex'));
+
+        return redirect(route('posisiIndex'))->with('success', 'Data Berhasil Di hapus');
     }
 }
