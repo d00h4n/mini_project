@@ -15,7 +15,7 @@ class karyawanController extends Controller
     public function index()
     {
         $karyawan = Karyawan::all();
-        return view('karyawan.index', compact('karyawan'));
+        return view('hrd.karyawan.index', compact('karyawan'));
     }
 
     /**
@@ -24,7 +24,7 @@ class karyawanController extends Controller
     public function create()
     {
         $posisi = Posisi::all();
-        return view('karyawan.create', [
+        return view('hrd.karyawan.create', [
             'posisi' => $posisi
         ]);
     }
@@ -95,7 +95,7 @@ class karyawanController extends Controller
     {
         $posisi = Posisi::all();
         $karyawan = Karyawan::findOrFail($karyawan);
-        return view('karyawan.edit', [
+        return view('hrd.karyawan.edit', [
             'karyawan' => $karyawan,
             'posisi' => $posisi
         ]);

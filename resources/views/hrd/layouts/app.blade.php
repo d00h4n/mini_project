@@ -117,13 +117,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="{{route('karyawanIndex')}}" class="nav-link">
+              <a href="{{route('posisiIndex')}}" class="nav-link">
                 <i class="nav-icon fas fa-th"></i>
                 <p>Teams</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{route('posisiIndex')}}" class="nav-link">
+              <a href="{{route('karyawanIndex')}}" class="nav-link">
                 <i class="nav-icon fas fa-store"></i>
                 <p>Members</p>
               </a>
