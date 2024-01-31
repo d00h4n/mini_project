@@ -7,9 +7,6 @@
     <title>Document</title>
 </head>
 <body>
-
-    <h1>Halo bang</h1>s
-
- 
+    <h1>Halo bang</h1>s 
 </body>
 </html>

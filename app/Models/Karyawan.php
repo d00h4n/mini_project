@@ -2,21 +2,18 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 
-class User extends Authenticatable
+
+class Karyawan extends Authenticatable implements AuthenticatableContract
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasFactory, Notifiable;
+    protected $table = 'karyawan';
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
     protected $fillable = [
         'nama',
         'id_posisi',
@@ -50,5 +47,6 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'password' => 'hashed',
     ];
 }
