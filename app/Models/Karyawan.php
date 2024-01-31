@@ -31,4 +31,9 @@ class Karyawan extends Model
     {
         return $this->belongsTo('App\Models\Posisi', 'id_posisi');
     }
+
+    public function presensi()
+    {
+        return $this->hasMany(Presensi::class);
+    }
 }

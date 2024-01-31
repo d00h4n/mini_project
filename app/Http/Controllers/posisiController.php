@@ -18,7 +18,7 @@ class posisiController extends Controller
 
         $posisi = Posisi::all();
 
-        return view('posisi.index', compact('posisi'));
+        return view('hrd.posisi.index', compact('posisi'));
     }
 
     /**
@@ -26,7 +26,7 @@ class posisiController extends Controller
      */
     public function create()
     {
-        return view('posisi.create');
+        return view('hrd.posisi.create');
     }
 
     /**
@@ -57,7 +57,7 @@ class posisiController extends Controller
     public function edit(string $posisi)
     {
         $posisi = Posisi::findOrFail($posisi);
-        return view('posisi.edit', compact('posisi'));
+        return view('hrd.posisi.edit', compact('posisi'));
     }
 
     /**

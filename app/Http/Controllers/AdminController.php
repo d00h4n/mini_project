@@ -16,15 +16,13 @@ class AdminController extends Controller
 
     function hrd(Request $request)
     {
-        echo "Selamat datang HRD";
-        echo "<h1>" . Auth::user()->nama . "</h1>";
-        echo "<a href='/logout'>Logout</a>";
+      return view('hrd.index');
     }
 
     function karyawan(Request $request)
     {
-        echo "Selamat datang tulang punggung keluarga";
-        echo "<h1>" . Auth::user()->nama . "</h1>";
-        echo "<a href='/logout'>Logout</a>";
+        return  view('karyawan.index', [
+            'data_karyawan' => \App\Models\Karyawan::all()
+        ]);
     }
 }
