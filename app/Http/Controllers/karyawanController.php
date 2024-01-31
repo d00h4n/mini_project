@@ -108,13 +108,7 @@ class karyawanController extends Controller
     {
         //validasi form
         $this->validate($request, [
-            'nama' => 'required|string|max:255',
-            'id_posisi' => 'required',
-            'gambar' => 'image|mimes:jpeg,jpg,png|max:2048',
-            'jenis_kelamin'     => 'required',
-            'username' => 'required',
-            'email' => 'required',
-            'password' => 'required',
+            'gambar'     => 'image|mimes:jpeg,jpg,png|max:2048',
         ]);
 
         //untuk mengambil ID Menu
@@ -135,6 +129,7 @@ class karyawanController extends Controller
                 'nama' => $request->nama,
                 'id_posisi' => $request->id_posisi,
                 'gambar' => $gambar->hashName(),
+                'roles' => $request->roles,
                 'jenis_kelamin' => $request->jenis_kelamin,
                 'tanggal_lahir' => $request->tanggal_lahir,
                 'alamat' => $request->alamat,
@@ -150,6 +145,7 @@ class karyawanController extends Controller
             $karyawan->update([
                 'nama' => $request->nama,
                 'id_posisi' => $request->id_posisi,
+                'roles' => $request->roles,
                 'jenis_kelamin' => $request->jenis_kelamin,
                 'tanggal_lahir' => $request->tanggal_lahir,
                 'alamat' => $request->alamat,
@@ -170,6 +166,8 @@ class karyawanController extends Controller
      */
     public function destroy(string $karyawan)
     {
-        //
+        $karyawan = Karyawan::findOrFail($karyawan);
+        $karyawan->delete();
+        return redirect(route('karyawanIndex'));
     }
 }
