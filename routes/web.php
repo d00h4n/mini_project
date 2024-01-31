@@ -59,5 +59,5 @@ Route::prefix('karyawan')->group(function () {
 
 // Jika Anda ingin menyesuaikan route resource presensi di folder hrd
 Route::namespace('hrd')->group(function () {
-    Route::resource('presensi', 'PresensiController')->only(['index']);
+    Route::resource('presensi', 'PresensiController')->only(['presensiIndex']);
 });

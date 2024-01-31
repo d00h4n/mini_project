@@ -11,8 +11,8 @@ class PresensiController extends Controller
 
 public function index()
 {
-    $presences = Presensi::all();
-    return view('presences.index', compact('presences'));
+    $presensi = Presensi::all();
+    return view('hrd.presensi.index', compact('presensiIndex'));
 }
 
 public function store(Request $request)
@@ -26,7 +26,7 @@ public function store(Request $request)
 
     Presensi::create($request->all());
 
-    return redirect()->route('presences.index')->with('success', 'Presensi berhasil ditambahkan!');
+    return redirect()->route('hrd.presensi.index')->with('success', 'Presensi berhasil ditambahkan!');
 }
 
 }
