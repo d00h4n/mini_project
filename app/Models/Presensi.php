@@ -8,13 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Presensi extends Model
 {
     protected $table = 'presensi';
+    public $timestamps = false;
 
     protected $fillable = [
         'id_karyawan',
         'tanggal',
         'jam_masuk',
         'jam_pulang',
-        'id_absensi'
+        'updated_at'
+
     ];
 
     public function karyawan()

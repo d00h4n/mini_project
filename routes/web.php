@@ -5,6 +5,7 @@ use App\Http\Controllers\karyawanController;
 use App\Http\Controllers\posisiController;
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\KaryawanPresensiController;
 use App\Http\Controllers\PresensiController;
 use App\Http\Controllers\SesiController;
 
@@ -41,7 +42,7 @@ Route::get('/app', function() {
 });
 
     Route::get('/app/hrd', [AdminController::class, 'hrd'])->middleware('userAkses:admin');
-    Route::get('/app/karyawan', [AdminController::class, 'karyawan'])->middleware('userAkses:karyawan');
+    Route::get('/app/karyawan', [AdminController::class, 'karyawan'])->name('aksesKaryawanIndex')->middleware('userAkses:karyawan');
     Route::get('/logout', [SesiController::class, 'logout'])->name('logout');
 });
 
@@ -64,8 +65,18 @@ Route::prefix('karyawan')->group(function () {
 
     Route::resource('presensi', PresensiController::class)->only(['index']);
 });
-
+// ADMIN View presensi
 Route::get('/presensi', [PresensiController::class,'index'])->name('presensiShow');
+
+//User View Presensi
+Route::get('karyawan_presensi', [KaryawanPresensiController::class,'index'])->name('karyawanPresensi');
+
+
+Route::middleware(['auth', 'userAkses:karyawan'])->group(function () {
+    Route::get('/karyawan-presensi', [KaryawanPresensiController::class, 'index'])->name('karyawanPresensiIndex');
+    Route::post('/absen-masuk', [KaryawanPresensiController::class, 'absenMasuk'])->name('absenMasuk');
+    Route::post('/absen-keluar', [KaryawanPresensiController::class, 'absenKeluar'])->name('absenKeluar');
+});
 
 
 // Route::prefix('presensi')->group(function() {
