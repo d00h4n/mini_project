@@ -32,17 +32,20 @@ Route::get('/home', function () {
 });
 
 Route::middleware(['auth'])->group(function () {
-Route::get('/app', function() {
-    $role=auth()->user()->roles;
-    if ($role == 'admin') {
-        return redirect('/app/hrd');
-    } elseif ($role == 'karyawan') {
-        return redirect('/app/karyawan');
-    }
-});
+    Route::get('/app', function () {
+        $role = auth()->user()->roles;
+        if ($role == 'admin') {
+            return redirect('/app/hrd');
+        } elseif ($role == 'karyawan') {
+            return redirect('/app/karyawan');
+        }
+    });
 
     Route::get('/app/hrd', [AdminController::class, 'hrd'])->middleware('userAkses:admin');
     Route::get('/app/karyawan', [AdminController::class, 'karyawan'])->name('aksesKaryawanIndex')->middleware('userAkses:karyawan');
+    Route::get('/edit-profil', [AdminController::class, 'editProfil'])->name('editProfil');
+    Route::patch('/update-profil', [AdminController::class, 'updateProfil'])->name('updateProfil');
+
     Route::get('/logout', [SesiController::class, 'logout'])->name('logout');
 });
 
@@ -65,11 +68,17 @@ Route::prefix('karyawan')->group(function () {
 
     Route::resource('presensi', PresensiController::class)->only(['index']);
 });
+
+// profile karyawan
+// Route::get('/edit-profil', [AdminController::class, 'editProfil'])->name('editProfil');
+// Route::get('/update-profil', [AdminController::class, 'updateProfil'])->name('updateProfil');
+Route::get('/profil', [AdminController::class, 'profil'])->name('profil');
+
 // ADMIN View presensi
-Route::get('/presensi', [PresensiController::class,'index'])->name('presensiShow');
+Route::get('/presensi', [PresensiController::class, 'index'])->name('presensiShow');
 
 //User View Presensi
-Route::get('karyawan_presensi', [KaryawanPresensiController::class,'index'])->name('karyawanPresensi');
+Route::get('karyawan_presensi', [KaryawanPresensiController::class, 'index'])->name('karyawanPresensi');
 
 
 Route::middleware(['auth', 'userAkses:karyawan'])->group(function () {
@@ -77,17 +86,3 @@ Route::middleware(['auth', 'userAkses:karyawan'])->group(function () {
     Route::post('/absen-masuk', [KaryawanPresensiController::class, 'absenMasuk'])->name('absenMasuk');
     Route::post('/absen-keluar', [KaryawanPresensiController::class, 'absenKeluar'])->name('absenKeluar');
 });
-
-
-// Route::prefix('presensi')->group(function() {
-    
-//     Route::get('/', [PresensiController::class,'show'])->name('presensiShow'); //admin
-    
-//     Route::get('/create', [PresensiController::class,'create'])->name('presensiCreate');
-//     Route::post('/create', [PresensiController::class,'store'])->name('presensiStore');    
-//     // Route::get('/{id}',[PresensiController::class,'cari'])->name('presensiCariID');  
-// });
-// Jika Anda ingin menyesuaikan route resource presensi di folder hrd
-// Route::get('hrd')->group(function () {
-//     Route::resource('presensi', 'PresensiController')->only(['presensiIndex']);
-// });

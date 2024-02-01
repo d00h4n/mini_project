@@ -19,6 +19,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.19.0/font/bootstrap-icons.css" rel="stylesheet">
+
+
 
   @yield('addCss')
 </head>
@@ -80,10 +83,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="{{ asset('assets/dist/img/Dialogue-Decryptor-Awaken-Icon.png') }}" class="img-circle elevation-2" alt="User Image">
+          <img src="{{ asset('storage/karyawan/' . auth()->user()->gambar) }}" class="img-circle elevation-2" alt="User Image" style="border-radius: 50%;">
         </div>
         <div class="info">
-          <a href="#" class="d-block">{{ auth()->user()->name }}</a>
+          <a href="#" class="d-block">{{auth()->user()->nama}}</a>
         </div>
       </div>
 
@@ -114,7 +117,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="{{route('aksesKaryawanIndex')}}" class="nav-link">
+              <a href="{{route('profil')}}" class="nav-link">
                 <i class="nav-icon fas fa-th"></i>
                 <p>Profil</p>
               </a>
@@ -144,7 +147,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- Bootstrap 4 -->
 <script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <!-- AdminLTE App -->
-<script src="{{ asset('assets/dist/js/adminlte.min.js') }}"></script>
+<script src="{{ asset('assets/dist/js/adminlte.min.js') }}">x</script>
 @yield('addJavascript')
 
 <style>
@@ -156,5 +159,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
       background-color: #ffffff;
   }
 </style>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>

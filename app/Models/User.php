@@ -12,6 +12,12 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+
+    public function posisi()
+    {
+        return $this->belongsTo(Posisi::class, 'id_posisi');
+    }
+
     /**
      * The attributes that are mass assignable.
      *
@@ -20,6 +26,7 @@ class User extends Authenticatable
     protected $fillable = [
         'nama',
         'id_posisi',
+        'roles',
         'gambar',
         'jenis_kelamin',
         'tanggal_lahir',

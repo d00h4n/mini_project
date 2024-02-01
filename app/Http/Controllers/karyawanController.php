@@ -6,6 +6,7 @@ use App\Models\Karyawan;
 use App\Models\Posisi;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 class karyawanController extends Controller
@@ -15,7 +16,7 @@ class karyawanController extends Controller
      */
     public function index()
     {
-        $karyawan = Karyawan::all();
+        $karyawan = User::all();
         return view('hrd.karyawan.index', compact('karyawan'));
     }
 
@@ -46,7 +47,7 @@ class karyawanController extends Controller
             $gambar->storeAs('public/karyawan', $gambar->hashName());
 
 
-            Karyawan::create([
+            User::create([
                 'nama' => $request->nama,
                 'id_posisi' => $request->id_posisi,
                 'gambar' => $gambar->hashName(),
@@ -56,12 +57,12 @@ class karyawanController extends Controller
                 'alamat' => $request->alamat,
                 'username' => $request->username,
                 'email' => $request->email,
-                'password' => $request->password,
+                'password' => Hash::make($request->password),
                 'no_hp' => $request->no_hp,
                 'tanggal_masuk' => $request->tanggal_masuk
             ]);
         } else {
-            Karyawan::create([
+            User::create([
                 'nama' => $request->nama,
                 'id_posisi' => $request->id_posisi,
                 'roles' => $request->roles,
@@ -70,7 +71,7 @@ class karyawanController extends Controller
                 'alamat' => $request->alamat,
                 'username' => $request->username,
                 'email' => $request->email,
-                'password' => $request->password,
+                'password' => Hash::make($request->password),
                 'no_hp' => $request->no_hp,
                 'tanggal_masuk' => $request->tanggal_masuk
             ]);
@@ -95,7 +96,7 @@ class karyawanController extends Controller
     public function edit(string $karyawan)
     {
         $posisi = Posisi::all();
-        $karyawan = Karyawan::findOrFail($karyawan);
+        $karyawan = User::findOrFail($karyawan);
         return view('hrd.karyawan.edit', [
             'karyawan' => $karyawan,
             'posisi' => $posisi
@@ -113,7 +114,7 @@ class karyawanController extends Controller
         ]);
 
         //untuk mengambil ID Menu
-        $karyawan = Karyawan::findOrFail($karyawan);
+        $karyawan = User::findOrFail($karyawan);
 
         //Cek apabila gambar akan di upload
         if ($request->hasFile('gambar')) {
@@ -167,7 +168,7 @@ class karyawanController extends Controller
      */
     public function destroy(string $karyawan)
     {
-        $karyawan = Karyawan::findOrFail($karyawan);
+        $karyawan = User::findOrFail($karyawan);
         $karyawan->delete();
         return redirect(route('karyawanIndex'));
     }
