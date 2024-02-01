@@ -17,7 +17,7 @@ class posisiController extends Controller
         // $perPage = $request->input('per_page', 10);
         // $posisi = Posisi::paginate($perPage);
 
-        $posisi = Posisi::all();
+        $posisi = Posisi::orderBy('created_at', 'desc')->get();
 
         return view('posisi.index', compact('posisi'));
     }

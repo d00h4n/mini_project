@@ -13,6 +13,9 @@
     {{-- icon --}}
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+    <!-- Include Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+
 </head>
 
 <body>
@@ -24,12 +27,13 @@
     <div class="container mt-5">
         <div class="card">
             <div class="card-header">
-                <a href="{{ route('posisiCreate') }}" class="btn btn-primary"><i class="material-icons">add_circle</i>
-                    <span> Tambah Kategori</span></a>
+                <a href="{{ route('posisiCreate') }}" class="btn btn-primary btn-md"><i
+                        class="fa-solid fa-circle-plus"></i>
+                    <span class="ms-2"> Tambah Kategori</span></a>
             </div>
 
             <div class="card-body">
-                <table class="table table-hover">
+                <table class="table table-hover mx-3 my-3 text-center">
                     <thead>
                         <tr>
                             <th>No.</th>
@@ -44,17 +48,17 @@
                                 <td>{{ $posisi->n_posisi }}</td>
                                 <td>
                                     <div class="text-right">
-                                        <button type="button" class="btn btn-info" data-bs-toggle="modal"
+                                        <button type="button" class="btn btn-info btn-md" data-bs-toggle="modal"
                                             data-bs-target="#detailModal{{ $posisi->id }}"
                                             onclick="showDetail({{ $posisi->id }})">
-                                            <i class="material-icons">info</i>
+                                            <i class="fas fa-info-circle"></i>
                                         </button>
                                         <a href="{{ route('posisiEdit', ['posisi' => $posisi->id]) }}"
-                                            class="btn btn-warning btn-sm" role="button"><i
-                                                class="material-icons">border_color</i></a>
+                                            class="btn btn-warning btn-md" role="button"><i
+                                                class="fas fa-edit"></i></a>
                                         <a href="{{ route('posisiDelete', ['posisi' => $posisi->id]) }}"
-                                            class="btn btn-danger btn-sm" role="button"><i
-                                                class="material-icons">delete</i></a>
+                                            class="btn btn-danger btn-md" role="button"><i
+                                                class="fas fa-trash"></i></a>
 
                                     </div>
                                 </td>
@@ -67,7 +71,7 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h1 class="modal-title fs-5" id="detailPosisiLabel">
-                                                <i class="material-icons">info</i><span> Detail Posisi</span>
+                                                <i class="fas fa-info-circle"></i><span> Detail Posisi</span>
                                             </h1>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>

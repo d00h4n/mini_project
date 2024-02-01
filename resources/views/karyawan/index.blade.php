@@ -13,6 +13,9 @@
     {{-- icon --}}
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+    <!-- Include Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+
 </head>
 
 <body>
@@ -24,8 +27,8 @@
     <div class="container mt-5">
         <div class="card">
             <div class="card-header">
-                <a href="{{ route('karyawanCreate') }}" class="btn btn-primary"><i class="material-icons">person_add</i>
-                    <span> Tambah Karyawan</span></a>
+                <a href="{{ route('karyawanCreate') }}" class="btn btn-primary btn-md"><i class="fas fa-user-plus"></i>
+                    Tambah Karyawan</a>
             </div>
 
             <div class="card-body">
@@ -60,17 +63,17 @@
                                 <td>
                                     <div class="text-right">
 
-                                        <button type="button" class="btn btn-info" data-bs-toggle="modal"
+                                        <button type="button" class="btn btn-info btn-md" data-bs-toggle="modal"
                                             data-bs-target="#detailModal{{ $karyawan->id }}"
                                             onclick="showDetail({{ $karyawan->id }})">
-                                            <i class="material-icons">info</i>
+                                            <i class="fas fa-info-circle"></i>
                                         </button>
                                         <a href="{{ route('karyawanEdit', ['karyawan' => $karyawan->id]) }}"
-                                            class="btn btn-warning btn-sm" role="button"><i
-                                                class="material-icons">border_color</i></a>
+                                            class="btn btn-warning btn-md" role="button"><i
+                                                class="fas fa-edit"></i></a>
                                         <a href="{{ route('karyawanDelete', ['karyawan' => $karyawan->id]) }}"
-                                            class="btn btn-danger btn-sm" role="button"><i
-                                                class="material-icons">delete</i></a>
+                                            class="btn btn-danger btn-md" role="button"><i
+                                                class="fas fa-trash"></i></a>
 
                                     </div>
                                 </td>
@@ -83,7 +86,7 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h1 class="modal-title fs-5" id="detailKaryawanLabel">
-                                                <i class="material-icons">info</i><span> Detail Karyawan</span>
+                                                <i class="fas fa-info-circle"></i><span> Detail Karyawan</span>
                                             </h1>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
