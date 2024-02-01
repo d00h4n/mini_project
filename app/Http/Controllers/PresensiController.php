@@ -9,10 +9,13 @@ class PresensiController extends Controller
 {
 
 
-public function index()
+public function index(Request $request)
 {
+    // return view('hrd.presensi.index');
     $presensi = Presensi::all();
-    return view('hrd.presensi.index', compact('presensiIndex'));
+    return view('hrd.presensi.index', compact('presensi'));
+
+
 }
 
 public function store(Request $request)

@@ -7,9 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Presensi extends Model
 {
-    protected $fillable = ['id_karyawan', 'tanggal', 'jam_masuk', 'jam_pulang', 'id_absensi'];
+    protected $table = 'presensi';
 
-     public function karyawan()
+    protected $fillable = [
+        'id_karyawan',
+        'tanggal',
+        'jam_masuk',
+        'jam_pulang',
+        'id_absensi'
+    ];
+
+    public function karyawan()
     {
         return $this->belongsTo(Karyawan::class, 'id_karyawan');
     }

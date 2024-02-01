@@ -68,7 +68,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4" >
+  <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-image: url('{{ asset('assets/dist/img/cardframe.jpg') }}'); background-size: cover; background-position: center;   color: rgb(255, 255, 255);">
     <!-- Brand Logo -->
     {{-- <a href="{{ route('home') }}" class="brand-link">
       <img src="{{ asset('assets/dist/img/Army-GrayRavenIII-Icon-White.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
@@ -126,7 +126,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{route('presensiShow')}}" class="nav-link">
+              <a href="{{route('karyawanIndex')}}" class="nav-link">
                 <i class="nav-icon fas fa-store"></i>
                 <p>Presensi</p>
               </a>

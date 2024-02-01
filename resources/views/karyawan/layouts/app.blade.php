@@ -26,7 +26,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <div class="wrapper">
 
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light" style="background-image: url('{{ asset('assets/dist/img/loginbg.jpg') }}'); background-size: cover; background-position: center;">
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       {{-- <li class="nav-item">
@@ -126,7 +126,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{route('presensiShow')}}" class="nav-link">
+              <a href="{{route('karyawanIndex')}}" class="nav-link">
                 <i class="nav-icon fas fa-store"></i>
                 <p>Presensi</p>
               </a>

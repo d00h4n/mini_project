@@ -1,4 +1,4 @@
-@extends('hrd.layouts.app')
+@extends('karyawan.layouts.app')
 
 @section('content')
     <h1>Karyawan - Presence Index</h1>

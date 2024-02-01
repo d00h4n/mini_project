@@ -31,10 +31,18 @@ Route::get('/home', function () {
 });
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/app', [AdminController::class, 'index']);
+Route::get('/app', function() {
+    $role=auth()->user()->roles;
+    if ($role == 'admin') {
+        return redirect('/app/hrd');
+    } elseif ($role == 'karyawan') {
+        return redirect('/app/karyawan');
+    }
+});
+
     Route::get('/app/hrd', [AdminController::class, 'hrd'])->middleware('userAkses:admin');
     Route::get('/app/karyawan', [AdminController::class, 'karyawan'])->middleware('userAkses:karyawan');
-    Route::get('/logout', [SesiController::class, 'logout']);
+    Route::get('/logout', [SesiController::class, 'logout'])->name('logout');
 });
 
 Route::prefix('posisi')->group(function () {
@@ -57,7 +65,18 @@ Route::prefix('karyawan')->group(function () {
     Route::resource('presensi', PresensiController::class)->only(['index']);
 });
 
+Route::get('/presensi', [PresensiController::class,'index'])->name('presensiShow');
+
+
+// Route::prefix('presensi')->group(function() {
+    
+//     Route::get('/', [PresensiController::class,'show'])->name('presensiShow'); //admin
+    
+//     Route::get('/create', [PresensiController::class,'create'])->name('presensiCreate');
+//     Route::post('/create', [PresensiController::class,'store'])->name('presensiStore');    
+//     // Route::get('/{id}',[PresensiController::class,'cari'])->name('presensiCariID');  
+// });
 // Jika Anda ingin menyesuaikan route resource presensi di folder hrd
-Route::namespace('hrd')->group(function () {
-    Route::resource('presensi', 'PresensiController')->only(['presensiIndex']);
-});
+// Route::get('hrd')->group(function () {
+//     Route::resource('presensi', 'PresensiController')->only(['presensiIndex']);
+// });
