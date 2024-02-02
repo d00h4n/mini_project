@@ -3,6 +3,15 @@
 @section('content')
 
 <div class="content-wrapper">
+  @if(session('success'))
+        <div class="alert alert-success alert-dismissible fade show d-flex justify-content-between" role="alert">
+            <div>
+                <i class="fa-solid fa-check mx-1"></i>
+                {{ session('success') }}
+            </div>
+            <a class="btn-close" data-bs-dismiss="alert" aria-label="Close"><i class="fa-solid fa-x"></i></a>
+        </div>
+    @endif
     <!-- Content Header (Page header) -->
     <div class="content-header">
         <div class="container-fluid">
@@ -15,15 +24,7 @@
     </div>
     <!-- /.content-header -->
 
-    @if(session('success'))
-        <div class="alert alert-success alert-dismissible fade show d-flex justify-content-between" role="alert">
-            <div>
-                <i class="fa-solid fa-check mx-1"></i>
-                {{ session('success') }}
-            </div>
-            <a class="btn-close" data-bs-dismiss="alert" aria-label="Close"><i class="fa-solid fa-x"></i></a>
-        </div>
-    @endif
+    
 
 
 

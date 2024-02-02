@@ -4,6 +4,15 @@
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
+    @if(session('success'))
+        <div class="alert alert-success alert-dismissible fade show d-flex justify-content-between" role="alert">
+            <div>
+                <i class="fa-solid fa-check mx-1"></i>
+                {{ session('success') }}
+            </div>
+            <a class="btn-close" data-bs-dismiss="alert" aria-label="Close"></a>
+        </div>
+    @endif
     <!-- Content Header (Page header) -->
     <div class="content-header">
         <div class="container-fluid">
@@ -48,9 +57,12 @@
                                 <td>{{ $loop->index + 1 }}</td>
                                 <td>{{ $posisi->n_posisi }}</td>
                                 <td>
-                                    <div class="text-right">
-                                        <a href="" class="btn btn-secondary btn-sm" role="button"><i
-                                                class="material-icons">info</i></a>
+                                    <div>
+                                        <button type="button" class="btn btn-info btn-md" data-bs-toggle="modal"
+                                                data-bs-target="#detailModal{{ $posisi->id }}"
+                                                onclick="showDetail({{ $posisi->id }})">
+                                                <i class="fas fa-info-circle"></i>
+                                        </button>
                                         <a href="{{ route('posisiEdit', ['posisi' => $posisi->id]) }}"
                                             class="btn btn-warning btn-sm" role="button"><i
                                                 class="material-icons">border_color</i></a>
@@ -61,6 +73,31 @@
                                     </div>
                                 </td>
                             </tr>
+
+                            <div class="modal fade" id="modalDetail{{ $posisi->id }}" tabindex="-1"
+                                aria-labelledby="modalDetailLabel{{ $posisi->id }}" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="modalDetailLabel{{ $posisi->id }}">
+                                                Detail Posisi</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p><strong>Posisi:</strong> {{ $posisi->n_posisi }}</p>
+                                            <p><strong>Deskripsi:</strong> {{ $posisi->deskrip }}</p>
+
+                                            <!-- Add more details as needed -->
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Tutup</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Modal Detail -->
                             @endforeach
                         </tbody>
 
@@ -73,5 +110,13 @@
     <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
+
+<script>
+    function showDetail(employeeId) {
+        $('#modalDetail' + employeeId).modal('show');
+    }
+
+    
+</script>
 
 @endsection

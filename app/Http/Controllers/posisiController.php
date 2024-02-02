@@ -76,7 +76,7 @@ class posisiController extends Controller
             'deskrip'     => $request->deskrip
         ]);
 
-        return redirect(route('posisiIndex'));
+        return redirect(route('posisiIndex'))->with('success', 'Posisi berhasil diperbarui');
     }
 
     /**

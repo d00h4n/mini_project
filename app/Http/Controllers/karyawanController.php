@@ -160,7 +160,7 @@ class karyawanController extends Controller
         }
 
         //mengarahkan ke halaman index menu
-        return redirect(route('karyawanIndex'));
+        return redirect(route('karyawanIndex'))->with('success', 'Karyawan berhasil diperbarui');
     }
 
     /**

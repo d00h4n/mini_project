@@ -4,6 +4,15 @@
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
+    @if(session('success'))
+        <div class="alert alert-success alert-dismissible fade show d-flex justify-content-between" role="alert">
+            <div>
+                <i class="fa-solid fa-check mx-1"></i>
+                {{ session('success') }}
+            </div>
+            <a class="btn-close" data-bs-dismiss="alert" aria-label="Close"></a>
+        </div>
+    @endif
     <!-- Content Header (Page header) -->
     <div class="content-header">
         <div class="container-fluid">
@@ -27,10 +36,10 @@
         <div class="container-fluid">
 
             <div class="card">
+
                 <div class="card-header">
-                    <a href="{{ route('karyawanCreate') }}" class="btn btn-primary"><i
-                            class="material-icons">person_add</i>
-                        <span> Tambah Karyawan</span></a>
+                    <a href="{{ route('karyawanCreate') }}" class="btn btn-primary btn-md"><i class="fas fa-user-plus"></i>
+                        Tambah Karyawan</a>
                 </div>
 
                 <div class="card-body">
@@ -64,9 +73,10 @@
                                     <td>{{ $karyawan->alamat }}</td>
                                     <td>
                                         <div class="text-right">
-                                            <button type="button" class="btn btn-info" data-bs-toggle="modal"
-                                                data-bs-target="#modalDetail{{ $karyawan->id }}">
-                                                <i class="material-icons">info</i>
+                                            <button type="button" class="btn btn-info btn-md" data-bs-toggle="modal"
+                                                data-bs-target="#detailModal{{ $karyawan->id }}"
+                                                onclick="showDetail({{ $karyawan->id }})">
+                                                <i class="fas fa-info-circle"></i>
                                             </button>
                                             <a href="{{ route('karyawanEdit', ['karyawan' => $karyawan->id]) }}"
                                                 class="btn btn-warning btn-sm" role="button"><i
@@ -91,11 +101,15 @@
                                                     aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                <!-- Isi detail karyawan di sini -->
-                                                <p>Nama: {{ $karyawan->nama }}</p>
-                                                <p>Posisi: {{ $karyawan->posisi->n_posisi }}</p>
-                                                <p>Roles: {{ $karyawan->roles }}</p>
-                                                <!-- Tambahkan informasi lainnya sesuai kebutuhan -->
+                                                <p><strong>Nama:</strong> {{ $karyawan->nama }}</p>
+                                                <p><strong>Posisi:</strong> {{ $karyawan->posisi->n_posisi }}</p>
+                                                <p><strong>Roles:</strong> {{ $karyawan->roles }}</p>
+                                                <p><strong>Jenis Kelamin:</strong> {{ $karyawan->jenis_kelamin }}</p>
+                                                <p><strong>Tanggal Lahir:</strong> {{ $karyawan->tanggal_lahir }}</p>
+                                                <p><strong>Alamat:</strong> {{ $karyawan->alamat }}</p>
+                                                <p><strong>Email:</strong> {{ $karyawan->email }}</p>
+                                                <p><strong>Nomor HP:</strong> {{ $karyawan->no_hp }}</p>
+                                                <!-- Add more details as needed -->
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary"
@@ -117,5 +131,12 @@
     <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
+
+<script>
+    function showDetail(employeeId) {
+        $('#modalDetail' + employeeId).modal('show');
+    }
+</script>
+
 
 @endsection
